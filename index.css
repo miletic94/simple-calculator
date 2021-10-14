@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap');
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ============================== */
+
+/* ============================== 
+1. Layout
+ ============================== */
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .display, .buttons {
+    padding: 0 3rem;
+}
+.buttons {
+    padding: 3.2rem;
+}
+header, .buttons, .buttons button, .display {
+    border-radius: 10px;
+} 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 3.2rem 0 2.4rem 0;
+}
+.theme-toggler {
+    display: flex;
+    align-items: flex-end;
+}
+.theme-toggler > div:nth-child(1) {
+    line-height: 2.4rem;
+}
+.radio-buttons {
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 1.3rem;
+    height: 2.6rem;
+    margin-top: 0.5rem;
+    padding: 0 0.5rem;
+    width: 80px;
+}
+.radio-buttons input {
+    width: 30%;
+    height: 60%;
+    margin: 0;
+    padding: 0;
+    position:relative;
+}
+.radio-buttons input:hover {
+    cursor:pointer;
+}
+.radio-buttons input:not(input:checked) {
+    opacity: 0;
+}
+.radio-buttons input:checked {
+    visibility: visible;
+}
+.radio-buttons input:checked::after {
+    content:"";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 90%;
+    border-radius: 50%;
+}
+.margin-2 {
+    margin-left: 2.1rem;
+}
+.display {
+    height: 12.8rem;
+}
+.labels {
+    display:flex;
+    justify-content: space-around;
+    width: 80px;
+    padding: 0 0.5rem;
+}
+
+label span {
+    width: 1.3rem;
+}
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(auto, 101px));
+    grid-template-rows: repeat(5, minmax(auto, 64px));
+    gap: 2.4rem;
+}
+.span-2 {
+    grid-column: span 2
+}
+
+/* ============================== 
+2. Typography 
+ ============================== */
+ html, body, button {
+    font-family: 'Spartan', sans-serif;
+    font-size: 10px;
+ }
+ .logo {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 3.6rem;
+    letter-spacing: -0.5px;
+    text-align: center;
+ }
+ .toggler-fonts {
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.3rem;
+    letter-spacing: 0.1rem;
+    text-align: center;    
+ }
+.display {
+    font-size: 4.8rem;
+    font-weight: 700;
+    line-height: 5.4rem;
+    letter-spacing: -0.8px;
+    text-align: right;
+}
+button {
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3.6rem;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+.btn-small-fonts {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.2rem;
+    letter-spacing: -0.3;
+}
+
+ /* ============================== 
+3. Buttons 
+ ============================== */
+button {
+    border:none;
+    outline:none;
+}
+
+ /* ============================== 
+4. Colors 
+ ============================== */
+ .theme-1 {
+     /* BACKGROUNDS */
+     /* main background */
+     --primary-bacground: hsl(222, 26%, 31%);
+     /* toggle background, keypad background */
+     --secondary-background: hsl(223, 31%, 20%);
+     /* display background */
+     --ternary-background: hsl(224, 36%, 15%);
+
+    /* KEYS */
+    /* primary key background */
+    --primary-key-background:  hsl(30, 25%, 89%);
+    /* primary-box-shadow */
+    --primary-box-shadow: hsl(28, 16%, 65%);
+    /* secondary key background */
+    --secondary-key-background: hsl(225, 21%, 49%);
+    /* secondary key shadow */
+    --secondary-key-shadow: hsl(224, 28%, 35%);
+    /* ternary key background, toggle */
+    --ternary-key-background: hsl(6, 63%, 50%);
+    /* ternary key shadow */
+    --ternary-key-shadow:  hsl(6, 70%, 34%);
+
+    /* TEXT */
+    /* primary text color */
+    --primary-text-color: hsl(221, 14%, 31%);
+    /* secondary text color */
+    --secondary-text-color: hsl(0, 0%, 100%);
+
+    --header-color: hsl(0, 0%, 100%);
+    --display-text-color: hsl(0, 0%, 100%);
+    --reset-text-color: hsl(0, 0%, 100%);
+    --equals-text-color: hsl(0, 0%, 100%);
+ }
+
+ .theme-2 {
+     /* BACKGROUNDS */
+     /* main background */
+     --primary-bacground:  hsl(0, 0%, 90%);
+     /* toggle background, keypad background */
+     --secondary-background:  hsl(0, 5%, 81%);
+     /* display background */
+     --ternary-background: hsl(0, 0%, 93%);
+
+    /* KEYS */
+    /* primary key background */
+    --primary-key-background: hsl(45, 7%, 89%);
+
+    /* primary-box-shadow */
+    --primary-box-shadow: hsl(0, 0%, 93%);
+    /* secondary key background */
+    --secondary-key-background: hsl(185, 42%, 37%);
+    /* secondary key shadow */
+    --secondary-key-shadow: hsl(185, 58%, 25%);
+    /* ternary key background, toggle */
+    --ternary-key-background: hsl(25, 98%, 40%);
+
+    /* ternary key shadow */
+    --ternary-key-shadow: hsl(25, 99%, 27%);
+
+    /* TEXT */
+    /* primary text color */
+    --primary-text-color: hsl(60, 10%, 19%);
+    /* secondary text color */
+    --secondary-text-color: hsl(0, 0%, 100%);
+
+    --header-color: hsl(60, 10%, 19%);
+    --display-text-color: hsl(60, 10%, 19%);
+    --reset-text-color: hsl(0, 0%, 100%);
+    --equals-text-color: hsl(0, 0%, 100%);
+ }
+ .theme-3 {
+     /* BACKGROUNDS */
+     /* main background */
+     --primary-bacground:  hsl(268, 75%, 9%);
+     /* toggle background, keypad background */
+     --secondary-background:  hsl(268, 71%, 12%);
+     /* display background */
+     --ternary-background: hsl(285, 91%, 52%);
+
+    /* KEYS */
+    /* primary key background */
+    --primary-key-background: hsl(268, 47%, 21%);
+    /* primary-box-shadow */
+    --primary-box-shadow: hsl(290, 70%, 36%);
+    /* secondary key background */
+    --secondary-key-background:  hsl(281, 89%, 26%);
+
+    /* secondary key shadow */
+    --secondary-key-shadow: hsl(285, 91%, 52%);
+    /* ternary key background, toggle */
+    --ternary-key-background: hsl(176, 100%, 44%);
+    /* ternary key shadow */
+    --ternary-key-shadow: hsl(177, 92%, 70%);
+
+    /* TEXT */
+    /* primary text color */
+    --primary-text-color: hsl(52, 100%, 62%);
+    /* secondary text color */
+    --secondary-text-color:  hsl(0, 0%, 100%);
+
+    --header-color: hsl(52, 100%, 62%);
+    --display-text-color: hsl(52, 100%, 62%);
+    --reset-text-color: hsl(0, 0%, 100%);
+    --equals-text-color:hsl(198, 20%, 13%, 1);
+
+ }
+body {
+    background-color: var(--primary-bacground);
+}
+header {
+    color: var(--header-color);
+}
+.radio-buttons, .buttons {
+    background-color: var(--secondary-background);
+}
+.radio-buttons input:checked::after {
+    background-color:var(--ternary-key-background);
+}
+.display {
+    background-color: var(--ternary-background);
+}
+.btn-primary {
+    background-color: var(--primary-key-background);
+    box-shadow: inset 0px -4px 0px var(--primary-box-shadow);
+}
+.btn-secondary {
+    background-color: var(--secondary-key-background);
+    box-shadow: inset 0px -4px 0px var(--secondary-key-shadow);
+}
+.btn-ternary {
+    background-color: var(--ternary-key-background);
+    box-shadow: inset 0px -4px 0px var(--ternary-key-shadow);
+}
+.buttons button {
+    color: var(--primary-text-color)
+}
+.display {
+    color: var(--secondary-text-color);
+}
+button.reset {
+    color: var(--reset-text-color);
+}
+button.equals {
+    color: var(--equals-text-color)
+}
+button.del {
+    color: var(--secondary-text-color)
+}
+div.display {
+    color: var(--display-text-color)
+}
+
+button:hover {
+    cursor: pointer;
+    filter: brightness(1.5) 
+}
+
+@media screen and (max-width: 708px) {
+    body {
+        justify-content: center;
+        align-items: center;
+    }
+    .display {
+        padding: 2vw;
+        margin: 2vw 0;
+    }
+    .buttons {
+        padding: 2.4rem;
+        gap: 1.6vw;
+    }
+}
+@media screen and (max-height: 600px) {
+    body {
+        align-content: flex-start;
+    }
+}
+@media screen and (max-height: 700px) and (orientation: landscape) {
+    body {
+        align-items: flex-start ;
+    }
+    .display {
+        padding: 2vh;
+        margin: 2vh;
+    }
+    .buttons {
+        padding: 2vh;
+        gap: 1.5vh;
+    }
+}

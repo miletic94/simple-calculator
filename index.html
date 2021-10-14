@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel='stylesheet' href='index.css' />
+  <title>Calculator</title>
+</head>
+<body class="theme-1">
+
+  <div class="container">
+    <header>
+      <div class="logo">
+        calc
+      </div>
+      <div class="theme-toggler">
+        <div class="toggler-fonts" onclick="toggle()">
+          THEME
+        </div> 
+        <div class="margin-2">
+         <div class="labels">
+          <label for="theme-1 toggler-fonts">
+            <span class="toggler-fonts">1</span>
+          </label>
+          <label for="theme-2 toggler-fonts">
+            <span class="toggler-fonts">2</span>
+          </label>
+          <label for="theme-3 ">
+            <span class="toggler-fonts">3</span>
+          </label>
+         </div>
+         <div class="radio-buttons">
+          <input type="radio" name="theme" id="theme-1" value="theme-1" checked/>
+          <input type="radio" name="theme" id="theme-2" value="theme-2" />
+          <input type="radio" name="theme" id="theme-3" value="theme-3"/>
+         </div>
+      </div>
+    </header>
+    <div class="display" data-current-operand> 
+      0
+    </div>
+    <div class="buttons">
+      <button class="btn-primary" data-number>7</button>
+      <button class="btn-primary" data-number>8</button>
+      <button class="btn-primary" data-number>9</button>
+      <button class="btn-secondary btn-small-fonts del" data-delete>DEL</button>
+      <button class="btn-primary" data-number>4</button>
+      <button class="btn-primary" data-number>5</button>
+      <button class="btn-primary" data-number>6</button>
+      <button class="btn-primary" data-operation>+</button>
+      <button class="btn-primary" data-number>1</button>
+      <button class="btn-primary" data-number>2</button>
+      <button class="btn-primary" data-number>3</button>
+      <button class="btn-primary" data-operation>-</button>
+      <button class="btn-primary" data-number>.</button>
+      <button class="btn-primary" data-number>0</button>
+      <button class="btn-primary" data-operation>/</button>
+      <button class="btn-primary" data-operation>x</button>
+      <button class="span-2 btn-secondary btn-small-fonts reset" data-reset>RESET</button>
+      <button class="span-2 btn-ternary btn-small-fonts equals" data-equals>=</button>
+    </div>
+  </div>
+  <script src="scripts/themeToggler.js"></script>
+  <script src="scripts/Calculator.js"></script>
+</body>
+</html>
