@@ -1,107 +1,140 @@
+import {display, numberButtons, operationButtons, deleteButton, resetButton} from "./constants.js"
+import {calculate} from "./calculate.js"
+import {equalsButton} from "./constants.js"
+
 class Calculator {
-    constructor(currentOperandTextElement) {
-        this.currentOperandTextElement = currentOperandTextElement
-        this.clear()
-    }
+    #collection
+    constructor() {
+        this.#collection = []
+        this.possibleOperations=["add", "substract", "multiply", "divide"]
+        }
+    get collection() {
+        return this.#collection
+    } 
 
-    clear() {
-        this.currentOperand = ''
-        this.previousOperand = ''
-        this.operation = undefined
-      }
+    isPossibleOperation(value) {
+        return !!this.possibleOperations.find(e => e === value)
+    }
     
+    isNumber(string) {
+        return !isNaN(string)
+    }
+
+    addToCollection(value) {
+        // MOVE TO CALCULATE
+        if(this.#collection.length === 0 && 
+          (value!=="add" && 
+          value!=="substract" && 
+          value!=="multiply" &&
+          value!=="divide")) {
+            this.collection.push("add")
+          }
+        let lastElement = this.collection[this.#collection.length-1]
+        if(
+            this.isNumber(lastElement) && (this.isNumber(value))
+          ) {
+                this.#collection.pop()
+
+                if(lastElement === "0") {
+                    this.#collection.push(value)
+                } else {
+                    this.#collection.push(lastElement+value)
+                }
+              
+          } else if(value === ".") {
+            if(lastElement && lastElement.includes(".")) return 
+            if(lastElement) {
+                this.#collection.pop()
+                this.#collection.push(lastElement+value)
+            }
+          }
+          else if(
+            this.isPossibleOperation(lastElement) && this.isPossibleOperation(value)   
+          ) {   
+              this.#collection.pop()
+              this.#collection.push(value)
+          } else {
+              this.#collection.push(value)
+          }
+        console.log("collection", this.#collection);
+        this.updateDisplay()
+    }
+
+    deleteFromCollection() {
+        const lastElement = this.#collection[this.#collection.length -1]
+
+        this.#collection.pop()
+
+        if(!isNaN(lastElement) && lastElement.length > 1) {
+            this.#collection.push(lastElement.slice(0, -1))
+        } 
+
+        this.updateDisplay()
+    }
+
+    resetCollection() {
+        this.#collection = []
+        display.innerText = 0
+    }
+
     updateDisplay() {
-        if(this.currentOperand !== "" && !(this.currentOperand instanceof Promise)) {
-            this.currentOperandTextElement.innerText = this.currentOperand
-        } else {
-            this.currentOperandTextElement.innerText = this.previousOperand
+        let displayText = this.#collection.map(element => {
+            switch(element) {
+                case "add":
+                    return "+"
+                case "substract":
+                    return "-"
+                case "multiply":
+                    return "*"
+                case "divide":
+                    return "/"
+                default:
+                    return element
+            }
+        })
+
+        if(displayText[0] === "+") {
+            displayText.shift()
         }
-    }
-    appendNumber(number) {
-        if(number === "." && this.currentOperand.includes(".")) return
-        this.currentOperand = this.currentOperand.toString() + number.toString();
-    }
-    delete() {
-        this.currentOperand = this.currentOperand.toString().slice(0, -1)
-    }
-
-    compute() {
-        let computation
-        let prev = parseFloat(this.previousOperand)
-        let cur = parseFloat(this.currentOperand)
-        if(isNaN(prev) || isNaN(cur)) return
-
-        switch (this.operation) {
-            case "+":
-                computation = prev + cur
-                break;
-            case "-":
-                computation = prev - cur
-                break
-            case "x":
-                computation = prev * cur
-                break
-            case "/":
-                computation = prev / cur
-                break
-            default:
-                computation = cur
-                break;
+        if(displayText.length===0) {
+            displayText = ["0"]
         }
-        this.currentOperand = computation
-        this.operation = undefined
-        this.previousOperand = ""
+        displayText = displayText.join("")
+
+        display.innerText = displayText
     }
-    chooseOperation(operation) {
-        if(this.currentOperand === "") return
-
-        if(this.previousOperand !== "") {
-            this.compute()
-        }
-        console.log(this.previousOperand)
-        console.log(operation)
-        console.log(this.currentOperand)
-
-        this.operation = operation
-        this.previousOperand = this.currentOperand
-        this.currentOperand = ""
+    calculate() {
+        return calculate(this.#collection)
     }
 }
 
 
-const numberButtons = document.querySelectorAll('[data-number]')
-const operationButtons = document.querySelectorAll('[data-operation]')
-const equalsButton = document.querySelector('[data-equals]')
-const deleteButton = document.querySelector('[data-delete]')
-const resetButton = document.querySelector("[data-reset]")
+const calculator = new Calculator
 
-const currentOperandTextElement = document.querySelector('[data-current-operand]')
-
-const calculator = new Calculator(currentOperandTextElement)
-
-numberButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        calculator.appendNumber(button.innerText)
-        calculator.updateDisplay()
+numberButtons.forEach(numberButton => {
+    numberButton.addEventListener("click", () => {
+        calculator.addToCollection(numberButton.dataset.number)
     })
 })
-operationButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        calculator.chooseOperation(button.innerText)
-        calculator.updateDisplay()
-    })
-})
-resetButton.addEventListener("click", () => {
-    calculator.clear()
-    calculator.updateDisplay()
-})
 
-equalsButton.addEventListener("click", () => {
-    calculator.compute()
-    calculator.updateDisplay()
+operationButtons.forEach(operationButton => {
+    operationButton.addEventListener("click", () => {
+        console.log(operationButton.dataset.operation)
+        calculator.addToCollection(operationButton.dataset.operation)
+    })
 })
 
 deleteButton.addEventListener("click", () => {
-    calculator.delete()
-    calculator.updateDisplay()
+    calculator.deleteFromCollection()
 })
+
+resetButton.addEventListener("click", () => {
+    calculator.resetCollection()
+})
+
+equalsButton.addEventListener("click", ()=> {
+    const result = calculator.calculate()
+    calculator.resetCollection()
+    calculator.addToCollection(result)
+})
+

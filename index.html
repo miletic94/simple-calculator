@@ -37,31 +37,32 @@
          </div>
       </div>
     </header>
-    <div class="display" data-current-operand> 
+    <div class="display" data-display> 
       0
     </div>
     <div class="buttons">
-      <button class="btn-primary" data-number>7</button>
-      <button class="btn-primary" data-number>8</button>
-      <button class="btn-primary" data-number>9</button>
+      <button class="btn-primary" data-number="7">7</button>
+      <button class="btn-primary" data-number="8">8</button>
+      <button class="btn-primary" data-number="9">9</button>
       <button class="btn-secondary btn-small-fonts del" data-delete>DEL</button>
-      <button class="btn-primary" data-number>4</button>
-      <button class="btn-primary" data-number>5</button>
-      <button class="btn-primary" data-number>6</button>
-      <button class="btn-primary" data-operation>+</button>
-      <button class="btn-primary" data-number>1</button>
-      <button class="btn-primary" data-number>2</button>
-      <button class="btn-primary" data-number>3</button>
-      <button class="btn-primary" data-operation>-</button>
-      <button class="btn-primary" data-number>.</button>
-      <button class="btn-primary" data-number>0</button>
-      <button class="btn-primary" data-operation>/</button>
-      <button class="btn-primary" data-operation>x</button>
+      <button class="btn-primary" data-number="4">4</button>
+      <button class="btn-primary" data-number="5">5</button>
+      <button class="btn-primary" data-number="6">6</button>
+      <button class="btn-primary" data-operation="add">+</button>
+      <button class="btn-primary" data-number="1">1</button>
+      <button class="btn-primary" data-number="2">2</button>
+      <button class="btn-primary" data-number="3">3</button>
+      <button class="btn-primary" data-operation="substract">-</button>
+      <button class="btn-primary" data-number=".">.</button>
+      <button class="btn-primary" data-number="0">0</button>
+      <button class="btn-primary" data-operation="divide">/</button>
+      <button class="btn-primary" data-operation="multiply">x</button>
       <button class="span-2 btn-secondary btn-small-fonts reset" data-reset>RESET</button>
       <button class="span-2 btn-ternary btn-small-fonts equals" data-equals>=</button>
     </div>
   </div>
+  <!-- <script src="./scripts/lodash.js"></script> -->
   <script src="scripts/themeToggler.js"></script>
-  <script src="scripts/Calculator.js"></script>
+  <script src="scripts/Calculator.js" type="module"></script>
 </body>
 </html>
